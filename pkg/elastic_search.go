@@ -19,7 +19,7 @@ func getElasticSearchDomains(client elasticsearchserviceiface.ElasticsearchServi
 
 	result, err := client.ListDomainNames(input)
 	if err != nil {
-		log.Fatal("Not able to get instances", err)
+		log.Fatal("Not able to get elasticsearch instances", err)
 	}
 	return result
 }

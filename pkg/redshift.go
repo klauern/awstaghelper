@@ -13,8 +13,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/sts/stsiface"
 )
 
-// getInstances return all redshift instances from specified region
-func getInstances(client redshiftiface.RedshiftAPI) []*redshift.Cluster {
+// getRedshiftInstances return all redshift instances from specified region
+func getRedshiftInstances(client redshiftiface.RedshiftAPI) []*redshift.Cluster {
 	input := &redshift.DescribeClustersInput{}
 
 	var result []*redshift.Cluster
@@ -25,15 +25,15 @@ func getInstances(client redshiftiface.RedshiftAPI) []*redshift.Cluster {
 			return !lastPage
 		})
 	if err != nil {
-		log.Fatal("Not able to get instances", err)
+		log.Fatal("Not able to get redshift instances", err)
 		return nil
 	}
 	return result
 }
 
-// ParseRedshiftTags parse output from getInstances and return arn and specified tags.
+// ParseRedshiftTags parse output from getRedshiftInstances and return arn and specified tags.
 func ParseRedshiftTags(tagsToRead string, client redshiftiface.RedshiftAPI, stsClient stsiface.STSAPI, region string) [][]string {
-	instancesOutput := getInstances(client)
+	instancesOutput := getRedshiftInstances(client)
 
 	callerIdentity, err := stsClient.GetCallerIdentity(&sts.GetCallerIdentityInput{})
 	if err != nil {

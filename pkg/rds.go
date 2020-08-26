@@ -23,7 +23,7 @@ func getRDSInstances(client rdsiface.RDSAPI) []*rds.DBInstance {
 			return !lastPage
 		})
 	if err != nil {
-		log.Fatal("Not able to get instances", err)
+		log.Fatal("Not able to get rds instances", err)
 		return nil
 	}
 	return result

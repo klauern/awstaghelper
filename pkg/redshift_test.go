@@ -43,7 +43,7 @@ func TestGetInstances(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run("GetInstances", func(t *testing.T) {
-			result := getInstances(c)
+			result := getRedshiftInstances(c)
 			assertions := assert.New(t)
 			assertions.EqualValues(expectedResult, result)
 		})

@@ -25,7 +25,7 @@ func getElastiCacheClusters(client elasticacheiface.ElastiCacheAPI) []*elasticac
 			return !lastPage
 		})
 	if err != nil {
-		log.Fatal("Not able to get instances", err)
+		log.Fatal("Not able to get elasticache instances", err)
 		return nil
 	}
 	return result
